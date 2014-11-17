@@ -66,38 +66,6 @@ void Tarjan(int u) {
 }
 
 
-
-
-int GetSuperPopularNum() {
-	int u, v;
-	int cnt = 0;
-	int ct[MAXN];
-
-	memset(outdegree, 0, sizeof(outdegree));
-	memset(ct, 0, sizeof(ct));
-
-
-	for (u = 1; u <= n; u++) {
-		ct[sccf[u]]++;
-		for (int k = first[u]; k != -1; k = edge[k].next) {
-			v = edge[k].v;
-			if (sccf[u] != sccf[v]) {
-				outdegree[sccf[u]]++;
-			}
-		}
-	}
-
-	for (u = 1; u <= scc; u++) {
-		if (outdegree[u] == 0) {
-			cnt++;
-			v = u;
-		}
-	}
-
-	return (cnt == 1) ? ct[v] : 0;
-}
-
-
 map<string, int> Map;
 map<int, string> GName;
 bool cmp1(int i, int j) {
