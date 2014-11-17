@@ -106,7 +106,7 @@ int main() {
 			Tarjan(i);
 		}
 	}
-	// cout << GetSuperPopularNum() << endl;
+
 	vector<vector<int>> ans;
 	ans.resize(scc);
 	for (i = 1; i <= idx; i++) {
