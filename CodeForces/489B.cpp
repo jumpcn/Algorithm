@@ -22,13 +22,15 @@ int main() {
 
     while(idx1 < b.size() && idx2 < g.size()) {
         int k = b[idx1];
-        while(idx2 < g.size()) {
-            if(abs(g[idx2] - k) <= 1) {
-                ans++;
-                break;
-            } else idx2++;
+        if(g[idx2] - k > 1) {
+            idx1++;
+        } else if(g[idx2] - k < -1) {
+            idx2++;
+        } else {
+            ans++;
+            idx1++;
+            idx2++;
         }
-        idx1++; idx2++;
     }
     cout << ans << endl;
 }
