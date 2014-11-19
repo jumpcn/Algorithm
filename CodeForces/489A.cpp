@@ -26,7 +26,7 @@ int main() {
         }
         if(idx != 0) {
             swap(d[i], d[idx]);
-            ans.push_back(make_pair(i, idx));
+            ans.push_back(make_pair(i - 1, idx - 1));
         }
     }
 
