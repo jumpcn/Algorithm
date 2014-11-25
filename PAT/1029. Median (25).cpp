@@ -7,11 +7,11 @@ const int lim = 333; //设定一个大于根号100000的数字
 stack<int> st;
 int size, a, q;
 char cmd[20];
-int bucket[lim]; // 放的是每个桶所容纳的数量
-int table[100005]; //简单hash表的用处是来判断这个数字是否出现过
+int bucket[lim]; // 放的是每个桶所容纳的数量，每个桶所记录的是每个lim区间所容纳的元素个数
+int table[100005]; //简单hash表的用处是来记录这个数字的数量
 int main() {
 	for (int i = 0; i < 100005; i++)table[i] = 0; //初始化简单hash表
-	for (int i = 0; i < lim; i++) bucket[i] = 0;
+	for (int i = 0; i < lim; i++) bucket[i] = 0; //初始化桶
 	scanf("%d", &q);
 	while (q--) {
 		scanf("%s", cmd);
