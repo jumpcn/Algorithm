@@ -36,14 +36,13 @@ int main() {
 			} else {
 				size = st.size();
 				size = size & 1 ? (size + 1) / 2 : size / 2;
-				int b = size / lim;
 				int cur = 0; //cur表示的是当前获得rank
 				int idx = 0;//枚举的桶下标
 				for (idx = 0; idx < lim; idx++) {
 					if (cur + bucket[idx] < size) cur += bucket[idx];//挨个加上每一个桶的数量，如果没有大于size就直接加上去
 					else break;
 				}
-				b = idx * lim; //b表示的是在hash表内枚举到下标
+				int b = idx * lim; //b表示的是在hash表内枚举到下标
 				for ( ; b <= b + lim; b++) { //肯定是在这个[b, b+lim]这个区间内能完成查找
 					int ff = table[b];
 					if (cur + ff >= size) { //如果大于size，证明有一个后者多个元素，说明b就是我们要找的元素
