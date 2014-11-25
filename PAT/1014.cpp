@@ -11,7 +11,7 @@ struct Window {
     int endTime, popTime; //对于一个窗口来说，有对于当前队伍所有在队的人的处理总时间endTime和在队头人处理完走人的的popTime
     queue<int> q;
     Window() {
-        popTime = endTime = convertToMinute(8, 0);
+        popTime = endTime = convertToMinute(8, 0); //一开始当然是都赋值为8:00
     }
 } window[20];
 int ans[max_node], needTime[max_node];
@@ -31,7 +31,7 @@ int main() {
     for(; inIndex < k; inIndex++) {
         int idx = -1, minPopTime = 1 << 30; //minPopTime是最早弹出时间，这里要找到所有窗口的最短时间，这样人才能跟上去
         for(int i = 0; i < n; i++) { //找呀找呀找呀找
-            Window& W = window[i];
+            Window& W = window[i]; //这里用了一个引用的技巧，防止代码中大量出现windows[i]，下同
             if(W.popTime + needTime[W.q.front()] < minPopTime) {
                 idx = i; //找到了！
                 minPopTime = W.popTime + needTime[W.q.front()]; //更新
@@ -41,9 +41,9 @@ int main() {
             Window& W = window[idx];
             W.endTime += needTime[inIndex];
             W.popTime += needTime[W.q.front()];
-            W.q.pop();
-            W.q.push(inIndex);
-            ans[inIndex] = W.endTime; //获得答案
+            W.q.pop();//更新完之后，前面的人就走了
+            W.q.push(inIndex); //后面的人跟上
+            ans[inIndex] = W.endTime; //后面人的处理完的答案就是这个窗口的endTime
         } else break;
     }
     for(int i = 0; i < q; i++) {
