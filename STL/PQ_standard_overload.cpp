@@ -16,7 +16,7 @@ struct cmp {
 };
 
 priority_queue<Point, vector<Point>, cmp> pq;
-
+priority_queue<int, vector<int>, greater<int> > intpq;
 int main() {
     pq.push(Point(1, 5));
     pq.push(Point(1, 2));
@@ -24,7 +24,14 @@ int main() {
     pq.push(Point(2, 1));
     while(!pq.empty()) {
         Point temp = pq.top();
-        cout << temp.x << " " << temp.y << " " << endl;
+      //  cout << temp.x << " " << temp.y << " " << endl;
         pq.pop();
+    }
+    for(int i = 0; i < 5; i++) {
+        intpq.push(i);
+    }
+    while(!intpq.empty()) {
+        cout << intpq.top() << endl;
+        intpq.pop();
     }
 }
