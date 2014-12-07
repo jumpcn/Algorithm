@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-const int N = 200000000;
+const int N = 500000000;
 const int M = 10000000;
-const int K = 14;
-int total = 10000000;
+const int K = 7;
+int total = 100000;
 bool bits[N];
 long long h[30];
 
@@ -20,7 +20,7 @@ bool BFfind(int x) {
     return true;
 }
 vector<int> vi;
-unordered_set<int> usi;
+set<int> usi;
 
 int main() {
     h[0] = 1; h[1] = 1;
@@ -30,16 +30,24 @@ int main() {
     for(int i = 0; i < M; i++) {
         int t = rand() * rand();
         if(t < 0) t = -t;
-        BFinsert(t);
-        vi.push_back(t);
+      //  BFinsert(t);
         usi.insert(t);
     }
 
     int error = 0;
-
     for(int i = 0; i < total; i++) {
-        int t = rand();
-        if(BFfind(t) == true && usi.count(t) == 0) error++;
+        while(true) {
+            int t = rand()*rand();
+            t = abs(t);
+            if(usi.count(t) == 0) {
+                if(BFfind(t) == true) {
+                    error++;
+                }
+                break;
+            } else {
+                continue;
+            }
+        }
     }
     cout << "total:" << total << endl;
     cout << "error:" << error << endl;

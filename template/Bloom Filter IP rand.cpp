@@ -2,10 +2,10 @@
 
 using namespace std;
 typedef long long LL;
-const int N = 30000000;
-const int M = 1000000;
+const int N = 150000000;
+const int M = 10000000;
 const int K = 5;
-int total = 100000;
+int total = 1000000;
 bool bits[N];
 LL h[30];
 struct IP {
@@ -13,20 +13,6 @@ struct IP {
     IP() {}
     IP (int a, int b, int c, int d) {
         ip[0] = a; ip[1] = b; ip[2] = c; ip[3] = d;
-    }
-    friend bool operator < (const IP& a, const IP& b) {
-        for(int i = 0; i < 4; i++) {
-            if(a.ip[i] == b.ip[i]) continue;
-            else return a.ip[i] < b.ip[i];
-        }
-        return false;
-    }
-    friend bool operator == (const IP& a, const IP& b) {
-        for(int i = 0; i < 4; i++) {
-            if(a.ip[i] == b.ip[i]) continue;
-            else return false;
-        }
-        return true;
     }
 };
 LL reflectHash(IP& a) {
@@ -68,18 +54,11 @@ int main() {
     int error = 0;
     srand(time(0));
     for(int i = 0; i < total; i++) {
-       // cout<<"error"<<error<<endl;
-        while(true) {
-            bool f = false;
-            IP t = IP(rand() % 256, rand() % 256, rand() % 256, rand() % 256);
-         //   cout<<usi.count(reflectHash(t))<<endl;
-            if((int)usi.count(reflectHash(t)) == 0) {
-                f = true;
-                if(BFfind(t) == true) {
-                    error++;
-                }
+        IP t = IP(rand() % 256, rand() % 256, rand() % 256, rand() % 256);
+        if((int)usi.count(reflectHash(t)) == 0) {
+            if(BFfind(t) == true) {
+                error++;
             }
-            if(f) break;
         }
     }
     cout << "total:" << total << endl;
