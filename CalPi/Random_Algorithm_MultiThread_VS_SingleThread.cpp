@@ -9,7 +9,7 @@ using namespace std;
 
 void cal(int T, std::promise<int> & p) {
     std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(0.0,1.0);
+    std::uniform_real_distribution<double> distribution(0.0, 1.0);
     int ok = 0;
     for(int i = 0; i < T; i++) {
         double x = distribution(generator);
